@@ -1,0 +1,27 @@
+{
+  "name": "frontend-102",
+  "version": "1.0.0",
+  "description": "The core website for Frontend-102",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccpadhare/frontend-102.git"
+  },
+  "keywords": [
+  ],
+  "author": "Chinmay Pandhare (ccpandhare)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ccpadhare/frontend-102/issues"
+  },
+  "homepage": "https://github.com/ccpadhare/frontend-102",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.5"
+  }
+}
