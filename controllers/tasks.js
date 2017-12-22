@@ -46,7 +46,7 @@ exports.get = (req, res) => {
                 res.status(403).json({"permission denied": "You can't view this part now."});
             else {
                 let questions = JSON.parse(JSON.stringify(tasks[req.params.set].parts));
-                let url = req.protocol + '://' + req.get('host') + req.originalUrl;
+                let url = 'http://pandhare.co.in/frontend-102/api/question'+req.params.set+"/"+req.params.part;
                 if(questions[req.params.part - 1].category != "task")
                     res.redirect(url.toLowerCase().replace('task','question'));
                 else {

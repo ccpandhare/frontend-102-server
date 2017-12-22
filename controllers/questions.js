@@ -28,7 +28,7 @@ exports.get = (req, res) => {
                 req.params.set = parseInt(req.params.set);
                 req.params.part = parseInt(req.params.part);
                 let questions = JSON.parse(JSON.stringify(tasks[req.params.set].parts));
-                let url = req.protocol + '://' + req.get('host') + req.originalUrl;
+                let url = 'http://pandhare.co.in/frontend-102/api/task/'+req.params.set+"/"+req.params.part;
                 let cat = questions[req.params.part - 1].category;
                 if(cat != "question")
                     res.redirect(url.toLowerCase().replace('question','task'));
