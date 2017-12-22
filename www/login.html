@@ -25,11 +25,11 @@
         function parseResult(res) {
             if(res.status === 0) {
                 result.innerHTML = "Logged in.";
-                window.location.href = "http://localhost:3000/load.html";
+                window.location.href = "http://pandhare.co.in/frontend-102/api/load.html";
             }
             else {
                 result.innerHTML = "An error occured. Please try again.";
-                window.location.href = "http://localhost:3000/";
+                window.location.href = "http://pandhare.co.in/frontend-102/";
             }
         }
         window.onload = function() {
@@ -37,7 +37,7 @@
             var code = url.split('?')[1].split('=')[1];
             $.ajax({
                 method: "GET",
-                url: "http://localhost:3000/frontend-102/login?code="+code,
+                url: "http://pandhare.co.in/frontend-102/api/login?code="+code,
                 success: parseResult
             });
         }

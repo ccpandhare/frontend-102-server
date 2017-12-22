@@ -38,10 +38,10 @@
     <script>
         $.ajax({
             method: "GET",
-            url: "http://localhost:3000/frontend-102/info",
+            url: "http://pandhare.co.in/frontend-102/api/info",
             contentType: "application/json",
             success: function(data) {
-                if(data.status == 1) window.location.href = "http://localhost:3000";
+                if(data.status == 1) window.location.href = "http://pandhare.co.in/frontend-102";
                 document.user = {
                     set: data.set,
                     part: data.part
@@ -58,7 +58,7 @@
                     validateTask.innerHTML = "Next";
                     validateTask.className = "next";
                     validateTask.onclick = function() {
-                        window.location.href = 'http://localhost:3000/load.html?set='+data.next[0]+'&part='+data.next[1];
+                        window.location.href = 'http://pandhare.co.in/frontend-102/load.html?set='+data.next[0]+'&part='+data.next[1];
                     }
                 }
                 else {
@@ -69,7 +69,7 @@
             }
             $.ajax({
                 method: "POST",
-                url: "http://localhost:3000/frontend-102/task/"+document.set+"/"+document.part,
+                url: "http://pandhare.co.in/frontend-102/api/task/"+document.set+"/"+document.part,
                 contentType: "application/json",
                 success: parseResult
             });
@@ -90,13 +90,13 @@
                     submitQuestion.innerHTML = "Next";
                     submitQuestion.className = "next";
                     submitQuestion.onclick = function() {
-                        window.location.href = "http://localhost:3000/load.html?set="+res.next[0]+"&part="+res.next[1]; 
+                        window.location.href = "http://pandhare.co.in/frontend-102/load.html?set="+res.next[0]+"&part="+res.next[1]; 
                     }
                 }
             }
             $.ajax({
                 method: "POST",
-                url: "http://localhost:3000/frontend-102/question/"+document.set+"/"+document.part,
+                url: "http://pandhare.co.in/frontend-102/api/question/"+document.set+"/"+document.part,
                 contentType: "application/json",
                 data: JSON.stringify({answer: ans}),
                 success: parseResult
@@ -119,11 +119,11 @@
                         submitQuestion.className = "next";
                         $.ajax({
                             method: "GET",
-                            url: "http://localhost:3000/frontend-102/next/"+set+"/"+part+"/",
+                            url: "http://pandhare.co.in/frontend-102/api/next/"+set+"/"+part+"/",
                             contentType: "application/json",
                             success: function(data) {
                                 submitQuestion.onclick = function() {
-                                    window.location.href = "http://localhost:3000/load.html?set="+data.next[0]+"&part="+data.next[1];
+                                    window.location.href = "http://pandhare.co.in/frontend-102/load.html?set="+data.next[0]+"&part="+data.next[1];
                                 }
                             }
                         });
@@ -140,11 +140,11 @@
             }
             $.ajax({
                 method: "GET",
-                url: "http://localhost:3000/frontend-102/question/"+set+"/"+part+"/",
+                url: "http://pandhare.co.in/frontend-102/api/question/"+set+"/"+part+"/",
                 contentType: "application/json",
                 success: parseResult,
                 error: function(data) {
-                    window.location.href = "http://localhost:3000/load.html?set="+document.user.set+"&part="+document.user.part;
+                    window.location.href = "http://pandhare.co.in/frontend-102/load.html?set="+document.user.set+"&part="+document.user.part;
                 }
             });
         }
@@ -156,7 +156,7 @@
                 load(params.get("set"),params.get("part"));
             }
             else {
-                window.location.href = "http://localhost:3000/load.html?set="+document.user.set+"&part="+document.user.part;
+                window.location.href = "http://pandhare.co.in/frontend-102/load.html?set="+document.user.set+"&part="+document.user.part;
             }
         }
     </script>

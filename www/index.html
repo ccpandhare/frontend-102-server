@@ -30,11 +30,11 @@
     <script>
         $.ajax({
             method: "GET",
-            url: "http://localhost:3000/frontend-102/info",
+            url: "http://pandhare.co.in/frontend-102/api/info",
             success: function(data) {
                 if(data.status !== 1) {
                     github.onclick = function() {
-                        window.location.href = "http://localhost:3000/load.html?set="+data.set+"&part="+data.part;
+                        window.location.href = "http://pandhare.co.in/frontend-102/load.html?set="+data.set+"&part="+data.part;
                     }
                     github.innerHTML = "Continue";
                     logout.className = "";
