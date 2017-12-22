@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FrontEnd 102 | Login</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/ajax.jquery.js"></script>
+</head>
+<body>
+    <header>
+        <span><h2>FrontEnd 102</h2></span>
+        <span><h4>DVM, BITS Pilani</h4></span>
+    </header>
+    <section>
+        <div>
+            <h1><u>Logging You In...</u></h1>
+            <p id="result"></p>
+        </div>
+    </section>
+    <footer>
+        <h5>Chinmay Pandhare</h5>
+    </footer>
+    <script>
+        function parseResult(res) {
+            if(res.status === 0) {
+                result.innerHTML = "Logged in.";
+                window.location.href = "http://localhost:3000/load.html";
+            }
+            else {
+                result.innerHTML = "An error occured. Please try again.";
+                window.location.href = "http://localhost:3000/";
+            }
+        }
+        window.onload = function() {
+            var url = window.location.href;
+            var code = url.split('?')[1].split('=')[1];
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/frontend-102/login?code="+code,
+                success: parseResult
+            });
+        }
+    </script>
+</body>
+</html>

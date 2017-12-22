@@ -18,6 +18,26 @@ function loggedIn(cookie) {
     });
 }
 
+function getCode(file,user) {
+    return new Promise((resolve, reject) => {
+        let uri = "https://api.github.com/repos/ccpandhare/frontend-102/contents/"+file;
+        require('request').get({
+            uri: uri,
+            json: true,
+            body: {},
+            auth: {
+                bearer: user.github_token
+            },
+            headers: {
+                'User-Agent': "FE102 Login"
+            }
+        }, (err, res2, body) => {
+            if(body.hasOwnProperty("content")) resolve(require('base-64').decode(body.content));
+            else reject();
+        });
+    });
+}
+
 exports.get = (req, res) => {
     loggedIn(req.cookies).then(user => {
         if(!user) res.status(403).json({"permission denied": "You are not authorised to access this information"});
@@ -25,16 +45,12 @@ exports.get = (req, res) => {
             if( (req.params.set>user.set) || (req.params.set==user.set&&req.params.part>user.part) )
                 res.status(403).json({"permission denied": "You can't view this part now."});
             else {
-                req.params.set = parseInt(req.params.set);
-                req.params.part = parseInt(req.params.part);
                 let questions = JSON.parse(JSON.stringify(tasks[req.params.set].parts));
                 let url = req.protocol + '://' + req.get('host') + req.originalUrl;
-                let cat = questions[req.params.part - 1].category;
-                if(cat != "question")
-                    res.redirect(url.toLowerCase().replace('question','task'));
+                if(questions[req.params.part - 1].category != "task")
+                    res.redirect(url.toLowerCase().replace('task','question'));
                 else {
-                    if(req.params.set==user.set && req.params.part==user.part)
-                        delete questions[req.params.part - 1].answer;
+                    delete questions[req.params.part - 1].test;
                     res.json(questions[req.params.part - 1]);
                 }
             }
@@ -42,7 +58,7 @@ exports.get = (req, res) => {
     });
 }
 
-exports.submit = (req, res) => {
+exports.validate = (req, res) => {
     var next = (correct, user) => {
         return new Promise(resolve => {
             let following;
@@ -76,27 +92,33 @@ exports.submit = (req, res) => {
             if(req.params.set != user.set || req.params.part != user.part)
                 res.status(403).json({"permission denied": "You can't view this question now"});
             else {
-                var question = tasks[user.set].parts[user.part - 1];
-                if(!question.hasOwnProperty("answer") || question.category != "question")
-                    res.status(404).send("Question not found");
-                var answer = req.body.answer;
-                if (answer.length != question.answer.length)
-                    res.json({
-                        "status": 1,
-                        "next": [user.set, user.part]
-                    });
-                else {
-                    var correct = 1;
-                    for(var i = 0; i < answer.length; i++)
-                        if(answer[i] !== question.answer[i])
-                            correct = 0;
-                    next(correct, user).then(value => {
-                        res.json({
-                            "status": (1 - correct),
-                            "next": value
+                let task = tasks[user.set].parts[user.part - 1];
+                if(!task.hasOwnProperty("test") || task.category != "task")
+                    res.status(404).send("Task not found");
+                let answer = req.body.answer;
+                let test = "../"+task.test;
+                getCode(task.file,user).then(contents => {
+                    require(test)(contents).then(correct => {
+                        next(correct, user).then(value => {
+                            res.json({
+                                "status": (1 - correct),
+                                "next": value,
+                                "contents": contents
+                            });
                         });
+                    }).catch(err => {
+                        res.json({
+                            "status": 1,
+                            "err": err,
+                            "next": [user.set, user.part]
+                        })
                     });
-                }
+                }).catch(err => {
+                    res.json({
+                        status: 1,
+                        err: err
+                    });
+                });
             }
         }
     });

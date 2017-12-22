@@ -10,8 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/ccpadhare/frontend-102.git"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Chinmay Pandhare (ccpandhare)",
   "license": "ISC",
   "bugs": {
@@ -19,9 +18,13 @@
   },
   "homepage": "https://github.com/ccpadhare/frontend-102",
   "dependencies": {
+    "base-64": "^0.1.0",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
-    "mongoose": "^4.13.5"
+    "mongoose": "^4.13.5",
+    "request": "^2.83.0",
+    "vm2": "^3.5.2"
   }
 }

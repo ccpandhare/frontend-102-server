@@ -4,15 +4,12 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
     github_username: {
         type: String,
-        default: ""
+        default: "",
+        unique: true
     },
-    github_oauth: {
+    github_token: {
         type: String,
         default: ""
-    },
-    points: {
-        type: Number,
-        default: 0
     },
     set: {
         type: Number,

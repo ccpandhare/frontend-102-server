@@ -1,6 +1,7 @@
 'use strict';
 var express = require('express'),
     app = express(),
+    cors = require('cors'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     mongoose = require('mongoose'),
@@ -9,8 +10,9 @@ var express = require('express'),
     Users = require('./models/user');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/frontend-102/');
+mongoose.connect('mongodb://localhost/frontend-102-db/');
 
+app.use(express.static('www'));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
