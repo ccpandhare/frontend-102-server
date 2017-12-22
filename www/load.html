@@ -144,7 +144,11 @@
                 contentType: "application/json",
                 success: parseResult,
                 error: function(data) {
-                    window.location.href = "http://pandhare.co.in/frontend-102/load.html?set="+document.user.set+"&part="+document.user.part;
+                    if(document.user.set!=document.set||document.user.part!=document.part)
+                        window.location.href = "http://pandhare.co.in/frontend-102/load.html?set="+document.user.set+"&part="+document.user.part;
+                    else {
+                        console.log(data);
+                    }
                 }
             });
         }
