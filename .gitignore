@@ -2,3 +2,4 @@ tasks/*
 node_modules
 gh_app
 test
+.htaccess
