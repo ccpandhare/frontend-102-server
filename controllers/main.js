@@ -78,12 +78,12 @@ exports.info = (req, res) => {
         });
         return;
     }
-    if(o.active_session == 0) {
-        User.find({}, (err,user) => {
-            res.json(user);
-        });
-        return;
-    }
+    // if(o.active_session == 0) {
+    //     User.find({}, (err,user) => {
+    //         res.json(user);
+    //     });
+    //     return;
+    // }
     User.find(o, (err, user) => {
         if(err) res.send(err);
         else if(user.length>0) res.json({
