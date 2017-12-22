@@ -25,7 +25,7 @@
         function parseResult(res) {
             if(res.status === 0) {
                 result.innerHTML = "Logged out.";
-                window.location.href = "http://localhost:3000/";
+                window.location.href = "http://pandhare.co.in/frontend-102/";
             }
             else {
                 result.innerHTML = "An error occured. Please try again.";
@@ -34,7 +34,7 @@
         window.onload = function() {
             $.ajax({
                 method: "GET",
-                url: "http://localhost:3000/frontend-102/api/logout",
+                url: "http://pandhare.co.in/frontend-102/api/logout",
                 success: parseResult
             });
         }
