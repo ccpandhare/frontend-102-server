@@ -90,9 +90,8 @@
                     submitQuestion.innerHTML = "Next";
                     submitQuestion.className = "next";
                     submitQuestion.onclick = function() {
-                        window.location.href = "http://pandhare.co.in/frontend-102/load.html?set="+document.user.set+"&part="+document.user.part; 
+                        window.location.href = "http://pandhare.co.in/frontend-102/load.html?set="+res.next[0]+"&part="+res.next[1]; 
                     }
-                    
                 }
             }
             $.ajax({
@@ -141,7 +140,7 @@
                         validateTask.innerHTML = "Continue";
                         validateTask.className = "next";
                         validateTask.onclick = function() {
-                            window.location.href = 'http://pandhare.co.in/frontend-102/load.html?set='+data.next[0]+'&part='+data.next[1];
+                            window.location.href = 'http://pandhare.co.in/frontend-102/load.html?set='+document.user.set+'&part='+document.user.part;
                         }
                     }
                 }
