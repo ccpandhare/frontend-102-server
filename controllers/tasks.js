@@ -74,7 +74,7 @@ exports.validate = (req, res) => {
                         });
                     }
                     else {
-                        resolve(false);
+                        resolve(["none","none"]);
                     }
                 }
                 else {

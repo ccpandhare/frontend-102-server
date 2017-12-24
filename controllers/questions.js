@@ -58,7 +58,7 @@ exports.submit = (req, res) => {
                         });
                     }
                     else {
-                        resolve(false);
+                        resolve(["none","none"]);
                     }
                 }
                 else {
