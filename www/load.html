@@ -58,6 +58,10 @@
                     validateTask.innerHTML = "Next";
                     validateTask.className = "next";
                     validateTask.onclick = function() {
+                        if(data.next[0]=="none"||data.next[1]=="none") {
+                            alert("You have completed the current dataset. Please check later for more!");
+                        }
+                        else
                         window.location.href = 'http://pandhare.co.in/frontend-102/load.html?set='+data.next[0]+'&part='+data.next[1];
                     }
                 }
@@ -140,6 +144,7 @@
                         validateTask.innerHTML = "Continue";
                         validateTask.className = "next";
                         validateTask.onclick = function() {
+                            if()
                             window.location.href = 'http://pandhare.co.in/frontend-102/load.html?set='+document.user.set+'&part='+document.user.part;
                         }
                     }
