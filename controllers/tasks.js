@@ -20,7 +20,7 @@ function loggedIn(cookie) {
 
 function getCode(file,user) {
     return new Promise((resolve, reject) => {
-        let uri = "https://api.github.com/repos/ccpandhare/frontend-102/contents/"+file;
+        let uri = "https://api.github.com/repos/"+user.github_username+"/frontend-102/contents/"+file;
         require('request').get({
             uri: uri,
             json: true,
