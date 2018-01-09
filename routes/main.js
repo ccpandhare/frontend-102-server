@@ -13,4 +13,6 @@ module.exports = function(app) {
     //     .get(Main.set);
     app.route('/frontend-102/next/:set/:part')
         .get(Main.next);
+    app.route('/frontend-102/parts/:set')
+        .get(Main.parts);
 }

@@ -190,3 +190,13 @@ exports.logout = (req, res) => {
         }
     );
 }
+
+exports.parts = (req, res) => {
+    let list = parts[req.params.set].parts.map(x=>{
+        return {
+            name: x.name,
+            title: x.title
+        }
+    });
+    res.json(list);
+}

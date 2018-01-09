@@ -189,3 +189,44 @@ pre.visible {
     box-shadow: 0 0 5px #aaa inset;
     margin: 10px 0;
 } */
+
+aside {
+    position: fixed;
+    display: flex;
+    overflow-y: auto;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    top: 75px;
+    bottom: 40px;
+    left: 0;
+    background: #eee;
+    transition: width 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    z-index: 0;
+}
+
+aside:hover {
+    width: 200px;
+    z-index: 1;
+}
+
+aside li {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+aside li p {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+}
+
+aside li:hover {
+    border: 1px 0 solid #999;
+}
+
+aside li:hover p {
+    height: 40px;
+}

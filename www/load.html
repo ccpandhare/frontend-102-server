@@ -14,6 +14,11 @@
         <span><h2>FrontEnd 102</h2></span>
         <span><h4>DVM, BITS Pilani</h4></span>
     </header>
+    <aside>
+        <ul id="list">
+            
+        </ul>
+    </aside>
     <section>
         <div>
             <h1 id="title"><u>Loading...</u><a href="load.html?set=1&part=1">Click here</a> if this doesn't work</h1>
@@ -37,12 +42,25 @@
         <a href="logout.html" id="logout">Log Out</a>
     </footer>
     <script>
+        document.user = {};
         $.ajax({
             method: "GET",
             url: "http://pandhare.co.in/frontend-102/api/info",
             contentType: "application/json",
             success: function(data) {
-                if(data.status == 1) window.location.href = "http://pandhare.co.in/frontend-102";
+                if(data.status == 1) { 
+                    window.location.href = "http://pandhare.co.in/frontend-102";
+                    $.ajax({
+                        method: "GET",
+                        url: "http://localhost:3000/frontend-102/parts/"+data.set,
+                        contentType: "application/json",
+                        success: function(data) {
+                            for (var i = 0; i < data.length; i++) {
+                                list.innerHTML += "<li onclick=\"window.location.href = load.html?set="+document.set+"&part="+(i+1)+"\">"+data[i].name+"<p>"+data[i].title+"</p></li>";
+                            }
+                        }
+                    });
+                }
                 document.user = {
                     set: data.set,
                     part: data.part
