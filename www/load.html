@@ -61,7 +61,7 @@
                     contentType: "application/json",
                     success: function(data) {
                         for (var i = 0; i < data.length; i++) {
-                            list.innerHTML += "<li onclick=\"window.location.href = load.html?set="+document.set+"&part="+(i+1)+"\">"+data[i].name+"<p>"+data[i].title+"</p></li>";
+                            list.innerHTML += "<li onclick=\"window.location.href = 'load.html?set="+document.set+"&part="+(i+1)+"'\">"+data[i].name+"<p>"+data[i].title+"</p></li>";
                         }
                     }
                 });
