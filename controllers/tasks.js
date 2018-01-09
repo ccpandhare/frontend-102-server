@@ -97,28 +97,34 @@ exports.validate = (req, res) => {
                     res.status(404).send("Task not found");
                 let answer = req.body.answer;
                 let test = "../"+task.test;
-                getCode(task.file,user).then(contents => {
-                    require(test)(contents).then(correct => {
-                        next(correct, user).then(value => {
-                            res.json({
-                                "status": (1 - correct),
-                                "next": value,
-                                "contents": contents
-                            });
-                        });
-                    }).catch(err => {
-                        res.json({
-                            "status": 1,
-                            "err": err,
-                            "next": [user.set, user.part]
-                        })
-                    });
-                }).catch(err => {
+                next(1, user).then(value => {
                     res.json({
-                        status: 1,
-                        err: err
+                        "status": 0,
+                        "next": value
                     });
                 });
+                // getCode(task.file,user).then(contents => {
+                //     require(test)(contents).then(correct => {
+                //         next(correct, user).then(value => {
+                //             res.json({
+                //                 "status": (1 - correct),
+                //                 "next": value,
+                //                 "contents": contents
+                //             });
+                //         });
+                //     }).catch(err => {
+                //         res.json({
+                //             "status": 1,
+                //             "err": err,
+                //             "next": [user.set, user.part]
+                //         })
+                //     });
+                // }).catch(err => {
+                //     res.json({
+                //         status: 1,
+                //         err: err
+                //     });
+                // });
             }
         }
     });
