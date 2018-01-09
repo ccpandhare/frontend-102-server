@@ -50,21 +50,21 @@
             success: function(data) {
                 if(data.status == 1) { 
                     window.location.href = "http://pandhare.co.in/frontend-102";
-                    $.ajax({
-                        method: "GET",
-                        url: "http://pandhare.co.in/frontend-102/api/parts/"+data.set,
-                        contentType: "application/json",
-                        success: function(data) {
-                            for (var i = 0; i < data.length; i++) {
-                                list.innerHTML += "<li onclick=\"window.location.href = load.html?set="+document.set+"&part="+(i+1)+"\">"+data[i].name+"<p>"+data[i].title+"</p></li>";
-                            }
-                        }
-                    });
                 }
                 document.user = {
                     set: data.set,
                     part: data.part
                 };
+                $.ajax({
+                    method: "GET",
+                    url: "http://pandhare.co.in/frontend-102/api/parts/"+data.set,
+                    contentType: "application/json",
+                    success: function(data) {
+                        for (var i = 0; i < data.length; i++) {
+                            list.innerHTML += "<li onclick=\"window.location.href = load.html?set="+document.set+"&part="+(i+1)+"\">"+data[i].name+"<p>"+data[i].title+"</p></li>";
+                        }
+                    }
+                });
             }
         });
         validateTask.onclick = function() {
